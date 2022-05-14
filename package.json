@@ -1,0 +1,32 @@
+{
+  "name": "licheex",
+  "version": "0.2.15",
+  "description": "Simple, predictable, developer friendly state management for alipay mini-program",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint src",
+    "lintf": "eslint src --fix"
+  },
+  "prepublish": "npm run build && npm version patch",
+  "author": "candy.zhengxq@gmail.com, gidcai@gmail.com",
+  "license": "ISC",
+  "files": [
+    "dist"
+  ],
+  "pre-commit": [
+    "lint"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/eslint-parser": "^7.17.0",
+    "eslint": "~8.15.0",
+    "eslint-config-standard": "~17.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "pre-commit": "^1.2.2"
+  },
+  "dependencies": {
+    "immer": "^9.0.14",
+    "immutability-helper-enhanced": "^2.8.1"
+  }
+}
