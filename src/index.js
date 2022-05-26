@@ -12,6 +12,7 @@ import { mapActionsToMethod, mapMutationsToMethod } from './mapHelpersToMethod';
 import configPreHandler from './storeConfigPreHandle';
 import wrapState from './utils/wrapState';
 import defaultMixin from './mixins/default';
+import Watcher from './Watcher';
 import './polyfill/index';
 
 function getPath(link) {
@@ -34,6 +35,7 @@ class Store {
       getters: store.getters || {},
       instanceName: store.namespace || store.instanceName
     });
+    //@todo  微信小程序不支持，需要转换成 $watch
     this.stateConfig = mapGettersToState(store.state || {}, this.getters, this);
     this.stateConfig.$global = this.connectGlobal ? global.getGlobalState(this.mapGlobals) : {};
     this.subscribe = this.subscribe.bind(this);
@@ -124,6 +126,7 @@ class Store {
     const that = this;
     config.data = config.data || {};
     Object.assign(config.data, this.stateConfig, config.state);
+
     const initialState = { ...config.data };
     const originOnLoad = config.onLoad;
     const originOnUnload = config.onUnload;
@@ -200,6 +203,10 @@ class Store {
       this.$message = global.messageManager;
       this.$store = that;
       this.$when = that.when;
+
+      if (!this.__watcher || !(this.__watcher instanceof Watcher)) {
+        this.__watcher = new Watcher(this);
+      }
         // 先榜上更新 store 的 监听器
       this.licheexUpdateLisitener = emitter.addListener('updateState', ({ state }) => {
         const newData = setStoreDataByState(this.data, state);
@@ -301,6 +308,7 @@ class Store {
         originOnLoad.call(this, query, contextData);
       }
     };
+    console.log(config.data)
     return {
       ...config,
       ...createHelpers.call(this, that.actions, that.mutations, that.$emitter)

@@ -10,7 +10,7 @@ function filterObjectByKey(array, object) {
     return p;
   }, {});
 };
-
+// 微信小程序不支持，需要转换成 $watch
 export default function mapGettersToState(state, getters = {}, store) {
   const result = { ...state };
   result.$getters = Object.keys(getters).reduce((p, v) => {
