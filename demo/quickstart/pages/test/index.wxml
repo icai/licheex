@@ -1,0 +1,16 @@
+<view>
+  <view>
+    <text>query: {{ query }}</text>
+  </view>
+  <view wx:for="{{ list }}" wx:for-item="item">
+    <navigator url="{{ item.url }}">{{ item.url }}</navigator>
+  </view>
+  <text>
+  </text>
+  
+<view wx:for="{{ list }}" wx:for-item="item">
+  <text data-url="{{ item.url }}" bindTap="jump">{{ item.url }}        
+  </text>
+</view>
+
+</view >
