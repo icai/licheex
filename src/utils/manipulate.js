@@ -1,7 +1,7 @@
 // {%TITLE=操作%}
 import { isFunc, isArray, isObject } from './is';
-import update from 'immutability-helper-enhanced';
-import produce from 'immer';
+import update from '../libs/immutability-helper-enhanced/index';
+import produce from '../libs/immer/index';
 
 /**
  * @desc 从一个对象通过操作序列来拿里面的值，做了基本防空措施

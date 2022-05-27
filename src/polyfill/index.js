@@ -3,3 +3,4 @@ import './array.prototype.findIndex';
 import './array.prototype.includes';
 import './string.prototype.includes';
 import './string.prototype.startsWith';
+import './proxy';

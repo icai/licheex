@@ -125,6 +125,8 @@ class Store {
   register(config = {}) {
     const that = this;
     config.data = config.data || {};
+    // 初始化数据
+    // @todo 不能直接复制，需求区分处理
     Object.assign(config.data, this.stateConfig, config.state);
 
     const initialState = { ...config.data };
